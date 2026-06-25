@@ -4,218 +4,303 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Share the Course | He Ako mo nga Umanga Mahi Ngatahi</title>
+  <link rel="stylesheet" href="style.css">
   <style>
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    body {
-      font-family: 'Georgia', serif;
-      background: #0d0d0d;
-      color: #f0ece0;
-      padding: 2rem 1rem;
-    }
-    header {
+    .share-header {
+      background: #111111;
+      color: #ffffff;
+      padding: 3rem 1.5rem 2rem;
+      border-bottom: 4px solid #ffffff;
       text-align: center;
-      padding: 2rem 1rem 1rem;
-      border-bottom: 2px solid #c0392b;
-      margin-bottom: 2.5rem;
     }
-    header h1 {
-      font-size: 1.6rem;
-      color: #e8d5a3;
-      margin-bottom: 0.5rem;
+    .share-header h1 {
+      font-family: 'Arial Black', sans-serif;
+      font-size: 2rem;
+      text-transform: uppercase;
+      letter-spacing: 4px;
+      margin-bottom: 0.75rem;
     }
-    header p {
-      font-size: 1rem;
-      color: #aaa;
+    .share-header p {
+      font-family: Georgia, serif;
+      font-style: italic;
+      font-size: 1.05rem;
+      color: #cccccc;
     }
-    .grid {
+    .instructions {
+      max-width: 800px;
+      margin: 2.5rem auto;
+      padding: 1.5rem 2rem;
+      background: #f5f5f5;
+      border: 3px solid #111111;
+      font-family: Georgia, serif;
+      line-height: 1.8;
+      color: #111;
+    }
+    .instructions strong {
+      font-weight: bold;
+      color: #000;
+    }
+    .meme-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 2rem;
-      max-width: 1100px;
-      margin: 0 auto;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 2.5rem;
+      max-width: 1200px;
+      margin: 0 auto 4rem;
+      padding: 0 1.5rem;
     }
-    .card {
-      border-radius: 8px;
-      overflow: hidden;
-      border: 1px solid #333;
-      background: #1a1a1a;
+    .meme-card {
+      border: 3px solid #111111;
+      background: #ffffff;
     }
-    .card .meme {
+    .meme-canvas {
       width: 100%;
-      aspect-ratio: 1;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      padding: 2rem;
+      padding: 2.5rem 2rem;
       text-align: center;
-      position: relative;
+      background: #111111;
+      color: #ffffff;
+      border-bottom: 4px solid #ffffff;
     }
-    .card .meme.twitter { aspect-ratio: 16/9; background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%); border-bottom: 4px solid #c0392b; }
-    .card .meme.facebook { aspect-ratio: 1.91/1; background: linear-gradient(135deg, #0f2027 0%, #203a43 50%, #2c5364 100%); border-bottom: 4px solid #e67e22; }
-    .card .meme.instagram { aspect-ratio: 1; background: linear-gradient(135deg, #1a0a00 0%, #3d1c02 50%, #1a0a00 100%); border-bottom: 4px solid #e8d5a3; }
-    .card .meme.linkedin { aspect-ratio: 1.91/1; background: linear-gradient(135deg, #0a1628 0%, #1e3a5f 100%); border-bottom: 4px solid #2980b9; }
-    .meme .label {
+    .meme-canvas.twitter { aspect-ratio: 16/9; }
+    .meme-canvas.facebook { aspect-ratio: 1.91/1; }
+    .meme-canvas.instagram { aspect-ratio: 1; }
+    .meme-canvas.linkedin { aspect-ratio: 1.91/1; }
+    .meme-canvas .logo {
+      font-family: 'Arial Black', sans-serif;
       font-size: 0.65rem;
-      letter-spacing: 3px;
+      letter-spacing: 4px;
       text-transform: uppercase;
-      color: #aaa;
-      margin-bottom: 1rem;
+      margin-bottom: 1.25rem;
+      opacity: 0.7;
     }
-    .meme .maori {
-      font-size: 1.05rem;
-      color: #e8d5a3;
+    .meme-canvas .maori {
+      font-family: Georgia, serif;
       font-style: italic;
-      margin-bottom: 0.75rem;
-      line-height: 1.5;
-    }
-    .meme .headline {
-      font-size: 1.3rem;
-      font-weight: bold;
-      color: #fff;
-      line-height: 1.4;
-      margin-bottom: 0.75rem;
-    }
-    .meme .sub {
-      font-size: 0.8rem;
-      color: #ccc;
-      line-height: 1.5;
+      font-size: 1.1rem;
+      line-height: 1.6;
       margin-bottom: 1rem;
+      color: #ffffff;
     }
-    .meme .url {
+    .meme-canvas .headline {
+      font-family: 'Arial Black', sans-serif;
+      font-size: 1.5rem;
+      line-height: 1.3;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      margin-bottom: 1rem;
+      color: #ffffff;
+    }
+    .meme-canvas .subline {
+      font-family: Georgia, serif;
+      font-size: 0.9rem;
+      line-height: 1.6;
+      margin-bottom: 1.25rem;
+      color: #cccccc;
+    }
+    .meme-canvas .url-box {
+      font-family: 'Arial Black', sans-serif;
       font-size: 0.75rem;
-      letter-spacing: 1px;
-      color: #e8d5a3;
-      border: 1px solid #e8d5a3;
-      padding: 0.3rem 0.75rem;
-      border-radius: 20px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      border: 2px solid #ffffff;
+      padding: 0.5rem 1rem;
       margin-top: auto;
     }
-    .meme .accent { color: #c0392b; }
-    .meme .fist {
-      font-size: 2rem;
-      margin-bottom: 0.5rem;
+    .meme-canvas .divider {
+      width: 80%;
+      height: 3px;
+      background: #ffffff;
+      margin: 1rem 0;
     }
     .card-footer {
-      padding: 0.75rem 1rem;
+      padding: 1rem 1.25rem;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      background: #111;
+      background: #f5f5f5;
+      border-top: 2px solid #111111;
     }
     .platform-tag {
-      font-size: 0.7rem;
+      font-family: 'Arial Black', sans-serif;
+      font-size: 0.65rem;
       letter-spacing: 2px;
       text-transform: uppercase;
-      color: #888;
+      color: #111;
+    }
+    .lang-tag {
+      font-family: Georgia, serif;
+      font-size: 0.75rem;
+      font-style: italic;
+      color: #555;
+      margin-left: 0.5rem;
     }
     .dl-btn {
       display: inline-block;
-      padding: 0.4rem 1rem;
-      background: #c0392b;
-      color: #fff;
+      padding: 0.5rem 1.25rem;
+      background: #111111;
+      color: #ffffff;
+      font-family: sans-serif;
       font-size: 0.75rem;
-      border-radius: 4px;
-      text-decoration: none;
+      font-weight: bold;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      border: 2px solid #111111;
       cursor: pointer;
-      border: none;
-      font-family: inherit;
+      transition: all 0.2s;
     }
-    .dl-btn:hover { background: #e74c3c; }
+    .dl-btn:hover {
+      background: #ffffff;
+      color: #111111;
+    }
     footer {
       text-align: center;
-      margin-top: 3rem;
-      padding-top: 2rem;
-      border-top: 1px solid #333;
-      color: #666;
-      font-size: 0.85rem;
-    }
-    footer a { color: #e8d5a3; text-decoration: none; }
-    .instructions {
-      max-width: 700px;
-      margin: 0 auto 2.5rem;
-      text-align: center;
-      background: #1a1a1a;
-      border: 1px solid #333;
-      border-radius: 8px;
-      padding: 1.25rem;
+      padding: 2rem 1rem 3rem;
+      border-top: 3px solid #111111;
+      background: #f5f5f5;
+      font-family: Georgia, serif;
+      color: #555;
       font-size: 0.9rem;
-      color: #aaa;
-      line-height: 1.7;
     }
-    .instructions strong { color: #e8d5a3; }
+    footer a {
+      color: #111111;
+      text-decoration: underline;
+      font-weight: bold;
+    }
   </style>
 </head>
 <body>
 
-<header>
-  <h1>Share the Course</h1>
-  <p>He Ako mo nga Umanga Mahi Ngatahi &mdash; free social media cards to spread the word</p>
+<header class="share-header">
+  <h1>Tohatoha | Share the Course</h1>
+  <p>Free social media cards — bilingual, black & white, ready to download</p>
 </header>
 
 <div class="instructions">
-  <strong>How to use:</strong> Right-click any card and save as image, or click <strong>Download</strong> to save it. Share on your socials with the link <strong>kiwidialectic.com</strong> &mdash; the course is free for everyone.
+  <strong>How to use:</strong> Click <strong>Download</strong> under any card to save the image as a PNG. Each platform has bilingual (te reo Māori / English) versions. Right-click and save works too. Share on your socials with <strong>kiwidialectic.com</strong> — this course is free for all.
 </div>
 
-<div class="grid">
+<div class="meme-grid">
 
-  <!-- TWITTER / X -->
-  <div class="card" id="card-twitter">
-    <div class="meme twitter" id="meme-twitter">
-      <div class="label">The Kiwi Dialectic</div>
-      <div class="fist">&#9994;</div>
-      <div class="headline">Build a Cooperative.<br>Build a Better Economy.</div>
-      <div class="sub">Free 6-module course on how to start a cooperative in Aotearoa. Mondragon model, Maori collective economics, solidarity economy.</div>
-      <div class="url">kiwidialectic.com</div>
-    </div>
-    <div class="card-footer">
-      <span class="platform-tag">Twitter / X &mdash; 1200x675</span>
-      <button class="dl-btn" onclick="downloadCard('meme-twitter','twitter-cooperative-aotearoa');">Download</button>
-    </div>
-  </div>
-
-  <!-- FACEBOOK -->
-  <div class="card" id="card-facebook">
-    <div class="meme facebook" id="meme-facebook">
-      <div class="label">The Kiwi Dialectic</div>
+  <!-- TWITTER / X - TE REO -->
+  <div class="meme-card">
+    <div class="meme-canvas twitter" id="twitter-maori">
+      <div class="logo">The Kiwi Dialectic</div>
       <div class="maori">He aha te mea nui o te ao?<br>He tangata, he tangata, he tangata.</div>
-      <div class="headline">How to Start a Cooperative<br>in Aotearoa</div>
-      <div class="sub">Free course. No paywall. No boss.<br>For workers, communities &amp; tangata whenua.</div>
-      <div class="url">kiwidialectic.com</div>
+      <div class="divider"></div>
+      <div class="headline">Hanga Umanga<br>Mahi Ngatahi</div>
+      <div class="subline">He akoranga kore utu. Ma te katoa.</div>
+      <div class="url-box">kiwidialectic.com</div>
     </div>
     <div class="card-footer">
-      <span class="platform-tag">Facebook &mdash; 1200x628</span>
-      <button class="dl-btn" onclick="downloadCard('meme-facebook','facebook-cooperative-aotearoa');">Download</button>
+      <span><span class="platform-tag">Twitter / X</span><span class="lang-tag">Te Reo Māori</span></span>
+      <button class="dl-btn" onclick="downloadCard('twitter-maori','twitter-cooperative-maori.png');">Download</button>
     </div>
   </div>
 
-  <!-- INSTAGRAM -->
-  <div class="card" id="card-instagram">
-    <div class="meme instagram" id="meme-instagram">
-      <div class="label">The Kiwi Dialectic</div>
-      <div class="fist">&#9994;</div>
+  <!-- TWITTER / X - ENGLISH -->
+  <div class="meme-card">
+    <div class="meme-canvas twitter" id="twitter-english">
+      <div class="logo">The Kiwi Dialectic</div>
+      <div class="maori">What is most important in this world?<br>It is people, it is people, it is people.</div>
+      <div class="divider"></div>
+      <div class="headline">Build a Cooperative.<br>Build Power.</div>
+      <div class="subline">Free 6-module course. For workers & communities.</div>
+      <div class="url-box">kiwidialectic.com</div>
+    </div>
+    <div class="card-footer">
+      <span><span class="platform-tag">Twitter / X</span><span class="lang-tag">English</span></span>
+      <button class="dl-btn" onclick="downloadCard('twitter-english','twitter-cooperative-english.png');">Download</button>
+    </div>
+  </div>
+
+  <!-- FACEBOOK - TE REO -->
+  <div class="meme-card">
+    <div class="meme-canvas facebook" id="facebook-maori">
+      <div class="logo">The Kiwi Dialectic</div>
       <div class="headline">He Ako mo nga<br>Umanga Mahi Ngatahi</div>
-      <div class="maori">How to Start a Cooperative<br>in Aotearoa</div>
-      <div class="sub">6 free modules. Legal structures, Mondragon model, Maori economics, solidarity economy.</div>
-      <div class="url">kiwidialectic.com</div>
+      <div class="subline">Akoranga kore utu, 6 wahanga.<br>Mondragon, Maori economics, solidarity economy.</div>
+      <div class="url-box">kiwidialectic.com</div>
     </div>
     <div class="card-footer">
-      <span class="platform-tag">Instagram &mdash; 1080x1080</span>
-      <button class="dl-btn" onclick="downloadCard('meme-instagram','instagram-cooperative-aotearoa');">Download</button>
+      <span><span class="platform-tag">Facebook</span><span class="lang-tag">Te Reo Māori</span></span>
+      <button class="dl-btn" onclick="downloadCard('facebook-maori','facebook-cooperative-maori.png');">Download</button>
     </div>
   </div>
 
-  <!-- LINKEDIN -->
-  <div class="card" id="card-linkedin">
-    <div class="meme linkedin" id="meme-linkedin">
-      <div class="label">The Kiwi Dialectic &mdash; Free Course</div>
-      <div class="headline">The Cooperative Economy<br>Starts Here.</div>
-      <div class="sub">He Ako mo nga Umanga Mahi Ngatahi is a free 6-module course on cooperative economics for Aotearoa &mdash; covering legal structures, the Mondragon model, Maori collective economics, and the solidarity economy.</div>
-      <div class="url">kiwidialectic.com</div>
+  <!-- FACEBOOK - ENGLISH -->
+  <div class="meme-card">
+    <div class="meme-canvas facebook" id="facebook-english">
+      <div class="logo">The Kiwi Dialectic</div>
+      <div class="headline">How to Start a<br>Cooperative in Aotearoa</div>
+      <div class="subline">Free course, 6 modules. No paywall. No boss.<br>Legal structures, Maori economics, solidarity economy.</div>
+      <div class="url-box">kiwidialectic.com</div>
     </div>
     <div class="card-footer">
-      <span class="platform-tag">LinkedIn &mdash; 1200x628</span>
-      <button class="dl-btn" onclick="downloadCard('meme-linkedin','linkedin-cooperative-aotearoa');">Download</button>
+      <span><span class="platform-tag">Facebook</span><span class="lang-tag">English</span></span>
+      <button class="dl-btn" onclick="downloadCard('facebook-english','facebook-cooperative-english.png');">Download</button>
+    </div>
+  </div>
+
+  <!-- INSTAGRAM - TE REO -->
+  <div class="meme-card">
+    <div class="meme-canvas instagram" id="instagram-maori">
+      <div class="logo">The Kiwi Dialectic</div>
+      <div class="headline">Hanga Ao Hou</div>
+      <div class="maori">He Ako mo nga Umanga Mahi Ngatahi</div>
+      <div class="divider"></div>
+      <div class="subline">Akoranga kore utu. 6 wahanga.<br>Mondragon, Maori economics,<br>solidarity economy.</div>
+      <div class="url-box">kiwidialectic.com</div>
+    </div>
+    <div class="card-footer">
+      <span><span class="platform-tag">Instagram</span><span class="lang-tag">Te Reo Māori</span></span>
+      <button class="dl-btn" onclick="downloadCard('instagram-maori','instagram-cooperative-maori.png');">Download</button>
+    </div>
+  </div>
+
+  <!-- INSTAGRAM - ENGLISH -->
+  <div class="meme-card">
+    <div class="meme-canvas instagram" id="instagram-english">
+      <div class="logo">The Kiwi Dialectic</div>
+      <div class="headline">Build the<br>New World</div>
+      <div class="maori">Cooperative Economics for Aotearoa</div>
+      <div class="divider"></div>
+      <div class="subline">Free 6-module course.<br>Mondragon model, Maori economics,<br>solidarity economy.</div>
+      <div class="url-box">kiwidialectic.com</div>
+    </div>
+    <div class="card-footer">
+      <span><span class="platform-tag">Instagram</span><span class="lang-tag">English</span></span>
+      <button class="dl-btn" onclick="downloadCard('instagram-english','instagram-cooperative-english.png');">Download</button>
+    </div>
+  </div>
+
+  <!-- LINKEDIN - TE REO -->
+  <div class="meme-card">
+    <div class="meme-canvas linkedin" id="linkedin-maori">
+      <div class="logo">The Kiwi Dialectic</div>
+      <div class="headline">He Ako mo nga Umanga<br>Mahi Ngatahi</div>
+      <div class="subline">Akoranga kore utu, 6 wahanga — tikanga ture, te tauira Mondragon,<br>te ohaoha Maori, me te ohaoha whakaaro tahi.</div>
+      <div class="url-box">kiwidialectic.com</div>
+    </div>
+    <div class="card-footer">
+      <span><span class="platform-tag">LinkedIn</span><span class="lang-tag">Te Reo Māori</span></span>
+      <button class="dl-btn" onclick="downloadCard('linkedin-maori','linkedin-cooperative-maori.png');">Download</button>
+    </div>
+  </div>
+
+  <!-- LINKEDIN - ENGLISH -->
+  <div class="meme-card">
+    <div class="meme-canvas linkedin" id="linkedin-english">
+      <div class="logo">The Kiwi Dialectic</div>
+      <div class="headline">The Cooperative Economy<br>Starts Here</div>
+      <div class="subline">Free 6-module course on cooperative economics for Aotearoa —<br>legal structures, the Mondragon model, Maori collective economics, and the solidarity economy.</div>
+      <div class="url-box">kiwidialectic.com</div>
+    </div>
+    <div class="card-footer">
+      <span><span class="platform-tag">LinkedIn</span><span class="lang-tag">English</span></span>
+      <button class="dl-btn" onclick="downloadCard('linkedin-english','linkedin-cooperative-english.png');">Download</button>
     </div>
   </div>
 
@@ -223,16 +308,16 @@
 
 <footer>
   <p>Course: <a href="https://robertmccallnz.github.io/cooperative-aotearoa/">robertmccallnz.github.io/cooperative-aotearoa</a></p>
-  <p style="margin-top:0.5rem;">Published by <a href="https://kiwidialectic.com">The Kiwi Dialectic</a> &mdash; free for all</p>
+  <p style="margin-top:0.75rem;">Published by <a href="https://kiwidialectic.com">The Kiwi Dialectic</a> — free for all</p>
 </footer>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 <script>
 function downloadCard(id, filename) {
   const el = document.getElementById(id);
-  html2canvas(el, { scale: 3, useCORS: true, backgroundColor: null }).then(function(canvas) {
+  html2canvas(el, { scale: 3, useCORS: true, backgroundColor: '#111111' }).then(function(canvas) {
     const link = document.createElement('a');
-    link.download = filename + '.png';
+    link.download = filename;
     link.href = canvas.toDataURL('image/png');
     link.click();
   });
